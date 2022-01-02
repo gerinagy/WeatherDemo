@@ -33,19 +33,16 @@ struct WeatherView: View {
                                 image
                                     .frame(width: 80, height: 30)
                                     .aspectRatio(contentMode: .fit)
-                                    .padding(.left, 5)
+                                Text(weather.weather[0].main)
                             } placeholder: {
-                                Image(systemName: "sun.max")
-                                    .font(.system(size: 40))
+                                ProgressView()
                             }
-                            
-                            Text(weather.weather[0].main)
                         }
                         .frame(width: 150, alignment: .leading)
                         
                         Spacer()
                         
-                        Text(weather.main.feelsLike.roundDouble() + "º")
+                        Text(weather.main.temp.roundDouble() + "º")
                             .font(.system(size: 100))
                             .fontWeight(.bold)
                             .padding()
@@ -78,9 +75,9 @@ struct WeatherView: View {
                         .bold().padding(.bottom)
                     
                     HStack {
-                        WeatherRow(logo:"thermometer", name: "Min temp", value: (weather.main.tempMin.roundDouble() + "º"))
+                        WeatherRow(logo:"thermometer", name: "Min temp", value: (weather.main.temp_min.roundDouble() + "º"))
                         Spacer()
-                        WeatherRow(logo:"thermometer", name: "Max temp", value: (weather.main.tempMax.roundDouble() + "º"))
+                        WeatherRow(logo:"thermometer", name: "Max temp", value: (weather.main.temp_max.roundDouble() + "º"))
                     }
                     HStack {
                         WeatherRow(logo:"wind", name: "Wind speed", value: (weather.wind.speed.roundDouble() + "m/s"))
